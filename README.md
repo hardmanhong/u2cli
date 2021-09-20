@@ -12,8 +12,7 @@ u2cli create <app-name>
 # 安装
 
 ```bash
-npx u2cli
-u2cli create <app-name>
+npx u2cli create <app-name>
 ```
 
 # 致谢
