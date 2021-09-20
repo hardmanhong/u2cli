@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 const path = require('path');
 const execa = require('execa');
-const packageJson = require('./package.json');
+const configJson = require('./config.json');
 
 const {
   setLatestPackage,
@@ -13,11 +13,11 @@ const {
 } = require('./utils');
 
 function copyTemplate(appDir, appName) {
-  setLatestPackage(packageJson.dependencies);
-  setLatestPackage(packageJson.devDependencies);
-  packageJson.name = appName;
+  setLatestPackage(configJson.dependencies);
+  setLatestPackage(configJson.devDependencies);
+  configJson.name = appName;
   copyFiles(path.resolve(__dirname, '../template'), appDir);
-  writeJsonToApp(appDir, 'package.json', packageJson);
+  writeJsonToApp(appDir, 'package.json', configJson);
 }
 
 async function create(appName) {
@@ -35,10 +35,10 @@ async function create(appName) {
   copyTemplate(appDir, appName);
   console.log(`📦  Installing additional dependencies...`);
   installPackge(appDir);
-  console.log(`🎉  Successfully created project ${chalk.yellow(appName)}.`);
-  console.log(chalk.gray('Execute the following command to start the project'));
-  console.log(`cd ${chalk.blue(appName)}.`);
-  console.log(chalk.blue('yarn start'));
+  console.log(`🎉 Successfully created project ${chalk.green(appName)}.`);
+  console.log(chalk.bold('Execute the following command to start the project'));
+  console.log(`cd ${chalk.cyan('appName')}`);
+  console.log(chalk.cyan('yarn start'));
 
   process.exit(1);
 }

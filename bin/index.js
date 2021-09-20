@@ -2,7 +2,6 @@
 const { program } = require('commander');
 const readline = require('readline');
 const chalk = require('chalk');
-const path = require('path');
 const clearConsole = (title) => {
   if (process.stdout.isTTY) {
     const blank = '\n'.repeat(process.stdout.rows);
