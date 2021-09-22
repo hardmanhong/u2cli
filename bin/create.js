@@ -29,15 +29,14 @@ async function create(appName) {
   console.log(`🚀  Invoking generators...`);
   fs.mkdirSync(appDir);
   execa.sync('git', ['init'], {
-    cwd: appDir,
-    stdio: 'inherit'
+    cwd: appDir
   });
   copyTemplate(appDir, appName);
   console.log(`📦  Installing additional dependencies...`);
   installPackge(appDir);
   console.log(`🎉 Successfully created project ${chalk.green(appName)}.`);
   console.log(chalk.bold('Execute the following command to start the project'));
-  console.log(`cd ${chalk.cyan('appName')}`);
+  console.log(chalk.cyan('cd ' + appName));
   console.log(chalk.cyan('yarn start'));
 
   process.exit(1);

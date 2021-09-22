@@ -12,14 +12,14 @@ const setLatestPackage = (deps) => {
 const copyFiles = (dirPath, appRoot) => {
   fs.removeSync(dirPath + '/node_modules');
   fs.copySync(dirPath, appRoot, {
-    filter: (file, dest) => path.basename(file) !== 'package.json'
+    filter: (file) => path.basename(file) !== 'package.json'
   });
 };
 const writeJsonToApp = (root, fileName, content) => {
   fs.writeFileSync(path.join(root, fileName), JSON.stringify(content, null, 2));
 };
 const installPackge = (root) => {
-  execa.sync('npm', ['i'], {
+  execa.sync('yarn', {
     cwd: root,
     stdio: 'inherit'
   });
