@@ -9,7 +9,7 @@ yarn
 ## 命令行参数
 
 以`--`开头，例如`--env=test`
-|环境变量|--env（区分开发环境，默认:dev） |--see（分析生成包情况，只在 production 下生效，默认: false）| --log（移除日志断点，只在 production 下生效 ），默认: false
+|环境变量|--env（区分环境，可任意值，需要匹配 .env.[name] 文件，默认:dev） |--see（分析生成包情况，只在 production 下生效，默认: false）| --log（移除日志断点，只在 production 下生效 ），默认: false
 |-|-|-|-|
 |开发环境 | dev| false|false|
 |测试环境 | test|false |false|

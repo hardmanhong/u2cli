@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
 import zh_CN from 'antd/lib/locale-provider/zh_CN'
-import routes from './router'
+import routes from './routes'
 import UseRequestProviderWithError from './UseRequestProviderWithError'
 function App() {
   return (

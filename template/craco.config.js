@@ -25,7 +25,7 @@ const pathResolve = (pathUrl) => path.join(__dirname, pathUrl)
 
 const args = require('minimist')(process.argv.slice(2))
 const env = args.env || 'dev'
-const dotenvPath = './.env.' + env
+const dotenvPath = '.env.' + env
 require('dotenv').config({ path: dotenvPath })
 const chalk = require('chalk')
 console.log(chalk.green(`环境配置：${dotenvPath}`))
@@ -37,7 +37,7 @@ module.exports = {
   webpack: {
     // 别名配置
     alias: {
-      '@': pathResolve('./src')
+      '@': pathResolve('src')
     },
     plugins: [
       // 配置环境变量
