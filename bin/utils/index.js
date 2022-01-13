@@ -4,10 +4,13 @@ const execa = require('execa');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 
+const excludePackage = ['chalk'];
+
 const setLatestPackage = (deps) => {
-  for (let key in deps) {
+  Object.keys(deps).forEach((key) => {
+    if (excludePackage.includes(key)) return;
     deps[key] = '^' + execa.sync('npm', ['view', key, 'version']).stdout;
-  }
+  });
 };
 const copyFiles = (dirPath, appRoot) => {
   fs.removeSync(dirPath + '/node_modules');
