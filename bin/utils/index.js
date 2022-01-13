@@ -4,18 +4,28 @@ const execa = require('execa');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 
-const excludePackage = ['chalk'];
+const packageLastest = [
+  'u2antd',
+  'u2hooks',
+  'antd',
+  'axios',
+  '@ant-design/icons',
+  '@ahooksjs/use-request'
+];
 
 const setLatestPackage = (deps) => {
   Object.keys(deps).forEach((key) => {
-    if (excludePackage.includes(key)) return;
-    deps[key] = '^' + execa.sync('npm', ['view', key, 'version']).stdout;
+    if (packageLastest.includes(key)) {
+      deps[key] = '^' + execa.sync('npm', ['view', key, 'version']).stdout;
+    }
   });
 };
 const copyFiles = (dirPath, appRoot) => {
-  fs.removeSync(dirPath + '/node_modules');
+  const excludeFiles = ['node_modules', 'yarn.lock', 'package.json'];
   fs.copySync(dirPath, appRoot, {
-    filter: (file) => path.basename(file) !== 'package.json'
+    filter: (filename) => {
+      return excludeFiles.every((exclude) => !filename.includes(exclude));
+    }
   });
 };
 const writeJsonToApp = (root, fileName, content) => {
@@ -37,7 +47,6 @@ const isEmptyExistDir = async (appDir, appName) => {
       }
     ]);
     if (override) {
-      console.log(chalk.green('removing...'));
       fs.removeSync(appDir);
       return true;
     } else {
