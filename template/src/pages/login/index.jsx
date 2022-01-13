@@ -67,7 +67,7 @@ const Login = () => {
   return (
     <div className='page-login'>
       <div className='content'>
-        <div className='header'>德越建筑申购</div>
+        <div className='header'>u2cli</div>
         <div className='form'>
           {errMsg && (
             <Alert

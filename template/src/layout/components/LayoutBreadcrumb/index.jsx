@@ -1,12 +1,11 @@
 import React from 'react'
 import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
-import { useQuery } from 'u2hooks'
-import { isFn } from '@/utils'
+import { useGetBreadcrumb } from '@/provider'
 import './style.scss'
 
-const LayoutBreadcrumb = ({ breadcrumb = [] }) => {
-  const query = useQuery()
+const LayoutBreadcrumb = () => {
+  const breadcrumb = useGetBreadcrumb()
   return breadcrumb.length ? (
     <Breadcrumb className='layout-breadcrumb'>
       {breadcrumb.map((item, index) => {
@@ -15,17 +14,11 @@ const LayoutBreadcrumb = ({ breadcrumb = [] }) => {
           return null
         }
         if (index === breadcrumb.length - 1 && name) {
-          return (
-            <Breadcrumb.Item key={path}>
-              {isFn(item.breadcrumb) ? item.breadcrumb(query) || name : name}
-            </Breadcrumb.Item>
-          )
+          return <Breadcrumb.Item key={path}>{name}</Breadcrumb.Item>
         }
         return (
           <Breadcrumb.Item key={path}>
-            <Link to={path}>
-              {isFn(item.breadcrumb) ? item.breadcrumb(query) || name : name}
-            </Link>
+            <Link to={path}>{name}</Link>
           </Breadcrumb.Item>
         )
       })}

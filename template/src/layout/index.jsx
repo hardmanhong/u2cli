@@ -16,14 +16,15 @@ import {
   getOpenMenuKeys,
   getSelectedMenuKeys
 } from './utils'
+import { useSetBreadcrumb } from '@/provider'
 
 const PageLayout = (props) => {
   const { route, children, location } = props
   const [collapsed, setCollapsed] = useState(false)
   const [menuData, setMenuData] = useState([])
-  const [breadcrumb, setBreadcrumb] = useState([])
   const [openMenuKeys, setOpenMenuKeys] = useState([])
   const [selectedMenuKeys, setSelectedMenuKeys] = useState([])
+  const setBreadcrumb = useSetBreadcrumb()
   const prevOpenKeys = useRef(openMenuKeys)
   useEffect(() => {
     genBreadcrumbMap(route.routes)
@@ -59,7 +60,7 @@ const PageLayout = (props) => {
       </LayoutSider>
       <Layout>
         <LayoutHeader />
-        <LayoutBreadcrumb breadcrumb={breadcrumb} />
+        <LayoutBreadcrumb />
         <LayoutContent>{children}</LayoutContent>
         <LayoutFooter />
       </Layout>

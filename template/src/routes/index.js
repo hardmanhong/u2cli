@@ -11,7 +11,6 @@ const modules = importRoute(require.context('../', true, /route\.js$/))
  * exact: Boolean 严格匹配，当有嵌套路由时需要，否则子路由也会匹配到
  * redirect: String 重定向路径
  * component: 渲染组件的文件路径
- * breadcrumb: Function 自定义渲染，参数为页面query
  * hideInMenu: Boolean 是否隐藏菜单栏
  * hideChildrenInMenu: Boolean 是否隐藏子路由菜单
  * hideInBreadcrumb: 隐藏当前面包屑名称
