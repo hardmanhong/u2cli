@@ -5,6 +5,7 @@
 # 调试
 
 ```bash
+# 记得使用管理员权限打开
 npm link
 u2cli create <app-name>
 ```
