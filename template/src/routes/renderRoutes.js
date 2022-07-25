@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import loadable from '@loadable/component'
 import { Spin } from 'antd'
+import NProgress from 'nprogress'
+import CacheRoute, { CacheSwitch } from 'react-router-cache-route'
+
+const Loading = () => {
+  useEffect(() => {
+    NProgress.start()
+    return () => {
+      NProgress.done()
+    }
+  })
+
+  return ''
+}
 
 const dynamicImport = (path) => {
   return loadable(() => import(`@/${path}`), {
-    fallback: <Spin />
+    fallback: <Loading />
   })
 }
 
@@ -37,7 +50,7 @@ const renderRoutes = (routes) => {
   if (!routes || !Array.isArray(routes)) return null
   routes = preloadComponent(routes)
   return (
-    <Switch>
+    <CacheSwitch>
       {routes.map((route, i) => {
         if (route.redirect) {
           return (
@@ -51,7 +64,7 @@ const renderRoutes = (routes) => {
           )
         }
         return (
-          <Route
+          <CacheRoute
             key={route.key || i}
             path={route.path}
             exact={route.exact}
@@ -73,7 +86,7 @@ const renderRoutes = (routes) => {
           />
         )
       })}
-    </Switch>
+    </CacheSwitch>
   )
 }
 

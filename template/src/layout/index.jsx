@@ -10,6 +10,7 @@ import {
 } from './components'
 import './index.scss'
 import {
+  breadcrumbMap,
   genMenuData,
   genBreadcrumbMap,
   getBreadcrumb,
@@ -17,15 +18,20 @@ import {
   getSelectedMenuKeys
 } from './utils'
 import { useSetBreadcrumb } from '@/provider'
+import { Tabs } from 'antd'
+
+const { TabPane } = Tabs
 
 const PageLayout = (props) => {
-  const { route, children, location } = props
+  const { route, children, location, history } = props
   const [collapsed, setCollapsed] = useState(false)
   const [menuData, setMenuData] = useState([])
   const [openMenuKeys, setOpenMenuKeys] = useState([])
   const [selectedMenuKeys, setSelectedMenuKeys] = useState([])
   const setBreadcrumb = useSetBreadcrumb()
   const prevOpenKeys = useRef(openMenuKeys)
+  const [historyPaths, setHistoryPaths] = useState([])
+  const [activeKey, setActiveKey] = useState('')
   useEffect(() => {
     genBreadcrumbMap(route.routes)
     setMenuData(genMenuData(route.routes))
@@ -45,6 +51,26 @@ const PageLayout = (props) => {
       setOpenMenuKeys(prevOpenKeys.current)
     }
   }, [collapsed])
+  useEffect(() => {
+    const name = breadcrumbMap[location.pathname].name
+    const path = [location.pathname, location.search].join('')
+    setActiveKey(path)
+    setHistoryPaths((l) => {
+      return l.find((i) => i.path === path)
+        ? l
+        : [
+            ...l,
+            {
+              name,
+              path,
+              children
+            }
+          ]
+    })
+  }, [location, children])
+  const onTabChange = (key) => {
+    history.replace(key)
+  }
   const LayoutMenuProps = {
     menuData,
     openMenuKeys,
@@ -52,7 +78,6 @@ const PageLayout = (props) => {
     setOpenMenuKeys,
     setSelectedMenuKeys
   }
-
   return (
     <Layout className='page-layout'>
       <LayoutSider collapsed={collapsed} setCollapsed={setCollapsed}>
@@ -61,7 +86,15 @@ const PageLayout = (props) => {
       <Layout>
         <LayoutHeader />
         <LayoutBreadcrumb />
-        <LayoutContent>{children}</LayoutContent>
+        <LayoutContent>
+          <Tabs activeKey={activeKey} onChange={onTabChange}>
+            {historyPaths.map((item) => (
+              <TabPane tab={item.name} key={item.path}>
+                {children}
+              </TabPane>
+            ))}
+          </Tabs>
+        </LayoutContent>
         <LayoutFooter />
       </Layout>
     </Layout>

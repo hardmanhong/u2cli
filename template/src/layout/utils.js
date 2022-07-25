@@ -1,4 +1,4 @@
-const breadcrumbMap = {}
+export const breadcrumbMap = {}
 const urlToList = (url) => {
   if (!url || url === '/') {
     return ['/']
