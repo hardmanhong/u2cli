@@ -29,6 +29,10 @@
 #root {
   width: 100%;
   height: 100%;
+  .cache-route {
+    width: 100%;
+    height: 100%;
+  }
   .TableActions {
     .ant-btn:first-child {
       padding-left: 0;

@@ -65,6 +65,7 @@ const renderRoutes = (routes) => {
         }
         return (
           <CacheRoute
+            className='cache-route'
             key={route.key || i}
             path={route.path}
             exact={route.exact}

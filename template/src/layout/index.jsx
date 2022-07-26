@@ -43,9 +43,11 @@ const PageLayout = (props) => {
     const openMenuKeys = getOpenMenuKeys(selectedMenuKeys)
     prevOpenKeys.current = openMenuKeys
     setBreadcrumb(breadcrumb)
-    setOpenMenuKeys(openMenuKeys)
+    if (!collapsed) {
+      setOpenMenuKeys(openMenuKeys)
+    }
     setSelectedMenuKeys(selectedMenuKeys)
-  }, [route, location])
+  }, [route, location, collapsed])
   useEffect(() => {
     if (!collapsed) {
       setOpenMenuKeys(prevOpenKeys.current)
