@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react'
 import { Layout } from 'antd'
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import './style.scss'
 const { Sider } = Layout
 
 const width = 208
-const collapsedWidth = 80
+const collapsedWidth = 48
 
 const generateStyle = (w) => ({
   width: w,
@@ -26,14 +27,19 @@ const LayoutSider = ({ collapsed = false, setCollapsed, children }) => {
       <div style={style}></div>
       <Sider
         className='page-sider'
+        theme='light'
         collapsible
         breakpoint='xl'
         collapsed={collapsed}
         onCollapse={setCollapsed}
         width={width}
         collapsedWidth={collapsedWidth}
+        trigger={
+          <div className='page-sider-trigger'>
+            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          </div>
+        }
       >
-        <div className='logo'>u2cli</div>
         {children}
       </Sider>
     </>

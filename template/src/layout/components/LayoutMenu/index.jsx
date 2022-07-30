@@ -39,7 +39,7 @@ const LayoutMenu = ({
   return (
     <Menu
       className='page-menu'
-      theme='dark'
+      theme='light'
       mode='inline'
       inlineIndent={32}
       openKeys={openMenuKeys}

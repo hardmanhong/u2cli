@@ -16,6 +16,11 @@ const Login = () => {
   const onLogin = (values) => {
     setErrMsg('')
     toggleLoading(true)
+    setTimeout(() => {
+      window.sessionStorage.setItem('token', 1)
+      history.push('/')
+    }, 1000)
+    return
     login(values)
       .finally(() => {
         toggleLoading(false)

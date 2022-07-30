@@ -1,14 +1,38 @@
 .page-layout {
-  .page-header {
+  .u2cli-header {
     position: relative;
-    z-index: 999;
-    background: #fff;
-    padding-left: 0;
-    padding-right: 16px;
-    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    height: 48px;
+    line-height: 48px;
+  }
+  .page-header {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+    height: 48px;
+    line-height: 48px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    padding: 0 16px;
+    box-shadow: 0 1px 4px rgba(155, 200, 241, 0.08);
+    background: #001529;
+    .logo {
+      color: #fff;
+      flex: none;
+      font-weight: bold;
+      text-align: center;
+      font-size: 20px;
+      user-select: none;
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      height: 100%;
+      flex: 1;
+    }
     .trigger {
       font-size: 18px;
       line-height: 64px;
@@ -27,8 +51,7 @@
       margin: 0 4px;
     }
     .user {
-      display: flex;
-      align-items: center;
+      display: inline-block;
       height: 100%;
     }
   }

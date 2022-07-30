@@ -3,7 +3,7 @@ import { Layout, Avatar, Dropdown, Menu, Form, Input } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import './style.scss'
 import { UModal } from 'u2antd'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 
 const { Header } = Layout
 const formLayout = {
@@ -57,31 +57,37 @@ const LayoutHeader = () => {
     ModalPassword.show({})
   }
   return (
-    <Header className='page-header'>
-      <Dropdown
-        overlay={
-          <Menu>
-            <Menu.Item key='changepsw' onClick={onChangePsw}>
-              修改密码
-            </Menu.Item>
-            <Menu.Divider />
-            <Menu.Item key='logout' onClick={onLogout}>
-              退出登录
-            </Menu.Item>
-          </Menu>
-        }
-      >
-        <div className='user'>
-          <Avatar size={34} icon={<UserOutlined />}>
-            {username}
-          </Avatar>
-          <div className='dropdown-link'>
-            <span className='name'>{username}</span>
-          </div>
-          <ModalPassword />
+    <>
+      <div className='u2cli-header'></div>
+      <Header className='page-header'>
+        <div className='logo'>u2cli</div>
+        <div className='right'>
+          <Dropdown
+            overlay={
+              <Menu>
+                <Menu.Item key='changepsw' onClick={onChangePsw}>
+                  修改密码
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item key='logout' onClick={onLogout}>
+                  退出登录
+                </Menu.Item>
+              </Menu>
+            }
+          >
+            <div className='user'>
+              <Avatar size={24} icon={<UserOutlined />}>
+                {username}
+              </Avatar>
+              <div className='dropdown-link'>
+                <span className='name'>{username}</span>
+              </div>
+              <ModalPassword />
+            </div>
+          </Dropdown>
         </div>
-      </Dropdown>
-    </Header>
+      </Header>
+    </>
   )
 }
 
