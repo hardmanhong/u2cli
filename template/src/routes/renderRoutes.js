@@ -50,7 +50,7 @@ const renderRoutes = (routes) => {
   if (!routes || !Array.isArray(routes)) return null
   routes = preloadComponent(routes)
   return (
-    <CacheSwitch>
+    <Switch>
       {routes.map((route, i) => {
         if (route.redirect) {
           return (
@@ -64,7 +64,7 @@ const renderRoutes = (routes) => {
           )
         }
         return (
-          <CacheRoute
+          <Route
             className='cache-route'
             key={route.key || i}
             path={route.path}
@@ -87,7 +87,7 @@ const renderRoutes = (routes) => {
           />
         )
       })}
-    </CacheSwitch>
+    </Switch>
   )
 }
 

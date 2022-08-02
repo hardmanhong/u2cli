@@ -23,7 +23,7 @@ import { Tabs } from 'antd'
 const { TabPane } = Tabs
 
 const PageLayout = (props) => {
-  const { route, children, location, history } = props
+  const { route, location, history } = props
   const [collapsed, setCollapsed] = useState(false)
   const [menuData, setMenuData] = useState([])
   const [openMenuKeys, setOpenMenuKeys] = useState([])
@@ -54,7 +54,7 @@ const PageLayout = (props) => {
     }
   }, [collapsed])
   useEffect(() => {
-    const name = breadcrumbMap[location.pathname].name
+    const item = breadcrumbMap[location.pathname]
     const path = [location.pathname, location.search].join('')
     setActiveKey(path)
     setHistoryPaths((l) => {
@@ -63,13 +63,13 @@ const PageLayout = (props) => {
         : [
             ...l,
             {
-              name,
+              name: item.name,
               path,
-              children
+              component: item.component
             }
           ]
     })
-  }, [location, children])
+  }, [location])
   const onTabChange = (key) => {
     history.replace(key)
   }
@@ -91,8 +91,8 @@ const PageLayout = (props) => {
         <LayoutContent>
           <Tabs activeKey={activeKey} onChange={onTabChange}>
             {historyPaths.map((item) => (
-              <TabPane tab={item.name} key={item.path}>
-                {children}
+              <TabPane forceRender tab={item.name} key={item.path}>
+                <item.component />
               </TabPane>
             ))}
           </Tabs>
