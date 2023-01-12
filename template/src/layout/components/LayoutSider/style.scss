@@ -1,5 +1,5 @@
 .page-sider {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   z-index: 100;
@@ -7,6 +7,7 @@
   padding-top: 48px;
   overflow: auto;
   overflow-x: hidden;
+  user-select: none;
 }
 .page-sider-placeholder {
   width: 208px;
@@ -18,6 +19,7 @@
     max-width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
 }
 .page-sider-trigger {
+  border-top: 1px solid var(--border);
   display: flex;
   height: 100%;
   align-items: center;

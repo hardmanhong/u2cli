@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import loadable from '@loadable/component'
-import { Spin } from 'antd'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
+const Loading = () => {
+  useEffect(() => {
+    NProgress.start()
+    return () => {
+      NProgress.done()
+    }
+  })
+  return ''
+}
 const dynamicImport = (path) => {
   return loadable(() => import(`@/${path}`), {
-    fallback: <Spin />
+    fallback: <Loading />
   })
 }
 

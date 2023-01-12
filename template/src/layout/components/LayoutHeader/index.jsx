@@ -4,6 +4,8 @@ import { UserOutlined } from '@ant-design/icons'
 import './style.scss'
 import { UModal } from 'u2antd'
 import { useHistory } from 'react-router-dom'
+import ThemeSwitch from './ThemeSwitch'
+import logo from './logo.png'
 
 const { Header } = Layout
 const formLayout = {
@@ -58,10 +60,16 @@ const LayoutHeader = () => {
   }
   return (
     <>
-      <div className='u2cli-header'></div>
+      <div className='u2admin-header'></div>
       <Header className='page-header'>
-        <div className='logo'>u2cli</div>
+        <div className='logo'>
+          <a target='_blank' href='https://github.com/hardmanhong/u2admin'>
+            <img src={logo} alt='logo' />
+            <h1>admin</h1>
+          </a>
+        </div>
         <div className='right'>
+          <ThemeSwitch />
           <Dropdown
             overlay={
               <Menu>

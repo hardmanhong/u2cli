@@ -1,4 +1,4 @@
-# u2cli
+# u2admin
 
 基于 `react-scripts` 、`craco`的脚手架
 
@@ -7,13 +7,13 @@
 ```bash
 # 记得使用管理员权限打开
 npm link
-u2cli create <app-name>
+u2admin create <app-name>
 ```
 
 # 安装
 
 ```bash
-npx u2cli create <app-name>
+npx u2admin create <app-name>
 ```
 
 # 致谢

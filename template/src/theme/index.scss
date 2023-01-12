@@ -1,0 +1,24 @@
+@import './dark.scss';
+@import './light.scss';
+
+body {
+  .page-sider,
+  .u2antd-table,
+  .u2antd-pagination,
+  .u2antd-search-form,
+  .ant-layout-sider-light .ant-layout-sider-trigger {
+    background: var(--bg);
+    color: var(--color);
+    .u2antd-table-name,
+    .ant-form-item-label > label {
+      color: var(--color);
+    }
+  }
+}
+body .ant-layout {
+  background: none;
+}
+body .page-layout {
+  background: var(--bg-layout);
+  color: var(--color);
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Layout ,Tabs} from 'antd'
+import { Layout, Tabs } from 'antd'
 import {
   LayoutSider,
   LayoutMenu,
@@ -18,7 +18,7 @@ import {
 } from './utils'
 import { useSetBreadcrumb } from '@/provider'
 
-const {Tab} = Tabs;
+const { Tab } = Tabs
 const PageLayout = (props) => {
   const { route, children, location } = props
   const [collapsed, setCollapsed] = useState(false)
@@ -59,13 +59,11 @@ const PageLayout = (props) => {
       <LayoutSider collapsed={collapsed} setCollapsed={setCollapsed}>
         <LayoutMenu {...LayoutMenuProps} />
       </LayoutSider>
-      <Layout>
+      <Layout className='content-layout'>
         <LayoutHeader />
         <LayoutBreadcrumb />
-        <LayoutContent>
-
-          {children}</LayoutContent>
-        <LayoutFooter />
+        <LayoutContent>{children}</LayoutContent>
+        {/* <LayoutFooter /> */}
       </Layout>
     </Layout>
   )

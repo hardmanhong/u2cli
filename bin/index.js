@@ -15,7 +15,7 @@ const clearConsole = (title) => {
 };
 program
   .version(require('../package').version)
-  .name('u2cli')
+  .name('u2admin')
   .usage(`${chalk.yellow('create')} <app-name>`);
 
 program
@@ -23,7 +23,7 @@ program
   .description('create a new project')
   .action((name) => {
     const create = require('./create');
-    clearConsole(chalk.yellow(`u2cli v${require('../package').version}`));
+    clearConsole(chalk.yellow(`u2admin v${require('../package').version}`));
     create(name);
   });
 
