@@ -54,7 +54,9 @@ const PageLayout = (props) => {
     }
   }, [collapsed])
   useEffect(() => {
-    const item = breadcrumbMap[location.pathname]
+    let item = breadcrumbMap[location.pathname]
+    if (item.redirect) item = breadcrumbMap[item.redirect]
+    console.log('item', item)
     const path = [location.pathname, location.search].join('')
     setActiveKey(path)
     setHistoryPaths((l) => {
@@ -65,7 +67,7 @@ const PageLayout = (props) => {
             {
               name: item.name,
               path,
-              component: item.component
+              component: item.component || (() => null)
             }
           ]
     })
